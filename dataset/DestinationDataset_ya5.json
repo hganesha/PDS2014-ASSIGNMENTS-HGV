@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_ya5",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "Azure Data Lake Storage Gen2 file"
+		},
+		"sqlPool": {
+			"referenceName": "reportingdbpool",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

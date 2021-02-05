@@ -1,0 +1,17 @@
+{
+	"name": "Query ADLS",
+	"properties": {
+		"description": "Query Lake",
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    TOP 100 SKU\nFROM\n    OPENROWSET(\n        BULK 'https://hgvtestadls.dfs.core.windows.net/hgvtestadlsfs/Items.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION='2.0',\n        FIRSTROW=2\n    ) with (SKU varchar(10) 1, Name varchar(100) 2, Description varchar(250) 3) AS ROWS\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

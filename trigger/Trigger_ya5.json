@@ -1,0 +1,24 @@
+{
+	"name": "Trigger_ya5",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copy item master",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2020-12-09T21:19:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
