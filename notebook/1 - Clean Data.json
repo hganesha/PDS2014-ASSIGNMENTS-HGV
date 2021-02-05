@@ -74,7 +74,7 @@
 					"import pandas as pd\n",
 					"import numpy as np"
 				],
-				"execution_count": null
+				"execution_count": 45
 			},
 			{
 				"cell_type": "markdown",
@@ -89,7 +89,7 @@
 					"data_lake_account_name = 'hgvsynapseadls'\n",
 					"file_system_name = 'hgvadlsfs1'"
 				],
-				"execution_count": null
+				"execution_count": 46
 			},
 			{
 				"cell_type": "code",
@@ -97,7 +97,7 @@
 					"paths = [f'abfss://{file_system_name}@{data_lake_account_name}.dfs.core.windows.net/raw_data/*']\n",
 					"df = spark.read.csv(*paths, header='true')"
 				],
-				"execution_count": null
+				"execution_count": 47
 			},
 			{
 				"cell_type": "code",
@@ -129,7 +129,7 @@
 					"# show retail dataframe\n",
 					"#display(df.take(5))"
 				],
-				"execution_count": null
+				"execution_count": 48
 			},
 			{
 				"cell_type": "code",
@@ -161,7 +161,7 @@
 					"# show missing values\n",
 					"#display(df.select([count(when(df[c].isNull(), c)).alias(c) for c in df.columns]))"
 				],
-				"execution_count": null
+				"execution_count": 49
 			},
 			{
 				"cell_type": "code",
@@ -169,7 +169,7 @@
 					"# drop rows that have no category, brand, or user session\n",
 					"df = df.filter((df.category_code != 'null') & (df.brand != 'null') & (df.brand != 'user_session'))"
 				],
-				"execution_count": null
+				"execution_count": 50
 			},
 			{
 				"cell_type": "code",
@@ -202,7 +202,7 @@
 					"df = df.withColumn('category', split(col('category_code'), '\\.').getItem(0))\\\n",
 					"       .withColumn('subcategory', split(col('category_code'), '\\.').getItem(1))\\"
 				],
-				"execution_count": null
+				"execution_count": 51
 			},
 			{
 				"cell_type": "code",
@@ -213,7 +213,7 @@
 					"# read filtered_df table intermediate spark table\n",
 					"df = spark.read.format(\"delta\").load(f\"abfss://{file_system_name}@{data_lake_account_name}.dfs.core.windows.net/intermediate_tables/filtered_df\")"
 				],
-				"execution_count": null
+				"execution_count": 52
 			},
 			{
 				"cell_type": "markdown",
@@ -309,7 +309,7 @@
 					"                                    )\n",
 					"                                )"
 				],
-				"execution_count": null
+				"execution_count": 54
 			},
 			{
 				"cell_type": "markdown",
@@ -347,7 +347,7 @@
 				"source": [
 					"df.write.format(\"delta\").mode(\"overwrite\").option(\"overwriteSchema\", \"true\").save(f\"abfss://{file_system_name}@{data_lake_account_name}.dfs.core.windows.net/transformed_data/cleaned_data_electronics\")"
 				],
-				"execution_count": null
+				"execution_count": 55
 			}
 		]
 	}
